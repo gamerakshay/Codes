@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main()
+{
+    ll int t;
+    cin >>t;
+    while(t--)
+    {
+        ll int n,m;
+        cin >>n>>m;
+        unsigned long long int c=pow(2,59);
+        if(n==m)
+        {
+            cout << n<<"\n";
+            continue;
+        }
+        while(m&c==0)
+        {
+            c=c/2;
+        }
+        while((c&n)==(m&c)&&(c>0))
+        {
+            c=c/2;
+        }
+        c=c-1;
+        cout << (m|c)<<"\n";
+    }
+}
