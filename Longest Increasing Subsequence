@@ -52,7 +52,7 @@ int lis(int a[],int n)
     {
         for(int j=0;j<i;j++)
         {
-            if(a[i]<a[j]&&list[i]<list[j+1])
+            if(a[i]>a[j]&&list[i]<list[j+1])
             {
                 list[i]=list[j]+1;
             }
