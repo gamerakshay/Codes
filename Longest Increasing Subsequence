@@ -1,0 +1,76 @@
+//using optimal substructure
+#include<bits/stdc++.h>
+using namespace std;
+int _lis(int a[],int n,int *maxref)
+{
+    if(n==1)
+    return 1;
+    int maxendinghere=1,res;
+    for(int i=1;i<n;i++)
+    {
+        res=_lis(a,i,maxref);
+        if(a[i-1]<a[n-1]&&((res+1)>maxendinghere))
+        {
+            maxendinghere=res+1;
+        }
+    }
+    if(*maxref<maxendinghere)
+    *maxref=maxendinghere;
+    return maxendinghere;
+}
+int lis(int a[],int n)
+{
+    int max=1;
+    _lis(a,n,&max);
+    return max;
+}
+
+int main()
+{
+    int n;
+    cin >>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin >>a[i];
+    }
+    cout << lis(a,n);
+    
+}
+
+
+
+//using overlapping subproblems
+
+#include<bits/stdc++.h>
+using namespace std;
+int lis(int a[],int n)
+{
+    int list[n];
+    list[0]=1;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<i;j++)
+        {
+            if(a[i]<a[j]&&list[i]<list[j+1])
+            {
+                list[i]=list[j]+1;
+            }
+        }
+    }
+    
+    return *max_element(lsit,list+n);
+}
+
+int main()
+{
+    int n;
+    cin >>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin >>a[i];
+    }
+    cout << lis(a,n);
+    
+}
