@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+string lpss(string s,int n)
+{
+    int maxlength=1;
+    int low,high,start=0;
+    for(int i=1;i<n;i++)
+    {
+        low=i-1;
+        high=i+1;
+        while(low>=0&&high<n&&s[low]==s[high])
+        {
+            if(high-low+1>maxlength)
+            {
+                start=low;
+                maxlength=high-low+1;
+            }
+            --low;
+            ++high;
+        }
+        low=i-1;
+        high=i;
+        while(low>=0&&high<n&&s[low]==s[high])
+        {
+            if(high-low+1>maxlength)
+            {
+                start=low;
+                maxlength=high-low+1;
+            }
+            --low;
+            ++high;
+        }
+    }
+    string t="";
+    int end = start + maxlength - 1; 
+    for( int i = start; i <= end; ++i )
+    {
+       t.push_back(s[i]);
+    }
+   return t;
+}
+int main()
+{
+    int n;
+    cin >>n;
+    string s;
+    cin >>s;
+    s=lpss(s,n);
+    cout<<s.length()<<"\n" << s;
+    
+}
