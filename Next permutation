@@ -1,0 +1,63 @@
+/*
+Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+
+If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order).
+
+The replacement must be in place and use only constant extra memory.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [1,3,2]
+Example 2:
+
+Input: nums = [3,2,1]
+Output: [1,2,3]
+*/
+
+      #include <bits/stdc++.h>
+    using namespace std;
+    #define ll long long
+    int main() 
+    {
+        int n;
+        cin >>n;
+       vector<int>a(n);
+        for(int i=0;i<n;i++)
+        {
+            cin >>a[i];
+        }
+        int i=n-2;
+        while(i>=0 && a[i]>a[i+1])
+        {
+            i--;
+        }
+        int j=n-1;
+        while(j!=i && i>=0)
+        {
+            if(a[j]>a[i])
+            {
+                swap(a[i],a[j]);
+                break;
+            }
+            else
+            {
+                j--;
+            }
+            
+
+        }
+         for(int i=0;i<n;i++)
+        {
+            cout<<a[i]<<" ";
+        }
+        reverse(a.begin()+1+i,a.end());
+        for(int i=0;i<n;i++)
+        {
+            cout<<a[i]<<" ";
+        }
+
+    
+    }
